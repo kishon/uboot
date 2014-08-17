@@ -132,6 +132,65 @@
 #define CONFIG_OMAP_USB_PHY
 #define CONFIG_OMAP_USB2PHY2_HOST
 
+/* USB GADGET */
+#define CONFIG_USB_DWC3_PHY_OMAP
+#define CONFIG_USB_DWC3_OMAP
+#define CONFIG_USB_DWC3
+#define CONFIG_USB_DWC3_GADGET
+#define CONFIG_SYS_DCACHE_OFF 1
+
+#define CONFIG_USB_GADGET
+#define CONFIG_USBDOWNLOAD_GADGET
+#define CONFIG_USB_GADGET_VBUS_DRAW 2
+#define CONFIG_G_DNL_MANUFACTURER "Texas Instruments"
+#define CONFIG_G_DNL_VENDOR_NUM 0x0403
+#define CONFIG_G_DNL_PRODUCT_NUM 0xBD00
+#define CONFIG_USB_GADGET_DUALSPEED
+
+/* USB Device Firmware Update support */
+#define CONFIG_DFU_FUNCTION
+#define CONFIG_DFU_RAM
+#define CONFIG_CMD_DFU
+
+#define DFU_ALT_INFO_MMC \
+	"dfu_alt_info_mmc=" \
+	"boot part 0 1;" \
+	"rootfs part 0 2;" \
+	"MLO fat 0 1;" \
+	"spl-os-args fat 0 1;" \
+	"spl-os-image fat 0 1;" \
+	"u-boot.img fat 0 1;" \
+	"uEnv.txt fat 0 1\0"
+
+#ifdef CONFIG_NAND
+#define CONFIG_DFU_NAND
+#define DFU_ALT_INFO_NAND \
+	"dfu_alt_info_nand=" \
+	"SPL part 0 1;" \
+	"SPL.backup1 part 0 2;" \
+	"SPL.backup2 part 0 3;" \
+	"SPL.backup3 part 0 4;" \
+	"u-boot part 0 5;" \
+	"u-boot-spl-os part 0 6;" \
+	"kernel part 0 8;" \
+	"rootfs part 0 9\0"
+#else
+#define DFU_ALT_INFO_NAND ""
+#endif
+
+#define CONFIG_DFU_RAM
+#define DFU_ALT_INFO_RAM \
+	"dfu_alt_info_ram=" \
+	"kernel ram 0x80200000 0x4000000;" \
+	"fdt ram 0x80f80000 0x80000;" \
+	"ramdisk ram 0x81000000 0x4000000\0"
+
+#define DFUARGS \
+	"dfu_alt_info_emmc=rawemmc mmc 0 3751936\0" \
+	DFU_ALT_INFO_MMC \
+	DFU_ALT_INFO_RAM \
+	DFU_ALT_INFO_NAND
+
 /* SATA */
 #define CONFIG_BOARD_LATE_INIT
 #define CONFIG_CMD_SCSI

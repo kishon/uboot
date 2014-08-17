@@ -122,6 +122,7 @@
 		"if test $fdtfile = undefined; then " \
 			"echo WARNING: Could not determine device tree to use; fi; \0" \
 	"loadfdt=load mmc ${bootpart} ${fdtaddr} ${bootdir}/${fdtfile};\0" \
+	DFUARGS \
 
 #define CONFIG_BOOTCOMMAND \
 	"run findfdt; " \
