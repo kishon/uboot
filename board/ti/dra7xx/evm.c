@@ -14,6 +14,7 @@
 #include <palmas.h>
 #include <sata.h>
 #include <usb.h>
+#include <linux/usb/gadget.h>
 #include <asm/arch/sys_proto.h>
 #include <asm/arch/mmc_host_def.h>
 #include <asm/arch/sata.h>
